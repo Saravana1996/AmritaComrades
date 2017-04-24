@@ -186,6 +186,11 @@ public class selectDep extends AppCompatActivity
 
         } else if (id == R.id.nav_send1) {
 
+        } else if (id == R.id.Faculty) {
+
+        } else if (id == R.id.Inbox){
+            Intent intent = new Intent(selectDep.this, Inbox.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

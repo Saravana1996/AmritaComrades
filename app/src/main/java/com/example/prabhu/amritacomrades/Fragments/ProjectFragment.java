@@ -10,10 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.prabhu.amritacomrades.Holder.InboxViewHolder;
 import com.example.prabhu.amritacomrades.Holder.ProjectViewHolder;
+import com.example.prabhu.amritacomrades.In;
 import com.example.prabhu.amritacomrades.Post;
 import com.example.prabhu.amritacomrades.ProjectDetails;
 import com.example.prabhu.amritacomrades.R;
+import com.example.prabhu.amritacomrades.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +35,7 @@ public abstract class ProjectFragment extends Fragment {
     // [END define_database_reference]
     private ProgressDialog mProgressDialog;
 
-    private FirebaseRecyclerAdapter<Post, ProjectViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<In, InboxViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
@@ -69,23 +72,23 @@ public abstract class ProjectFragment extends Fragment {
 
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
-        mAdapter = new FirebaseRecyclerAdapter<Post, ProjectViewHolder>(Post.class, R.layout.item_post,
-                ProjectViewHolder.class, postsQuery) {
+        mAdapter = new FirebaseRecyclerAdapter<In, InboxViewHolder>(In.class, R.layout.item_inbox,
+                InboxViewHolder.class, postsQuery) {
             @Override
-            protected void populateViewHolder(final ProjectViewHolder viewHolder, final Post model, final int position) {
+            protected void populateViewHolder(final InboxViewHolder viewHolder, final In model, final int position) {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
                 final String postKey = postRef.getKey();
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Launch PostDetailActivity
-                        Intent intent = new Intent(getActivity(), ProjectDetails.class);
-                        intent.putExtra(ProjectDetails.EXTRA_POST_KEY, postKey);
-                        startActivity(intent);
-                    }
-                });
+//                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        // Launch PostDetailActivity
+//                        Intent intent = new Intent(getActivity(), ProjectDetails.class);
+//                        intent.putExtra(ProjectDetails.EXTRA_POST_KEY, postKey);
+//                        startActivity(intent);
+//                    }
+//                });
                 viewHolder.bindToPost(model);
             }
         };

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/post_title"
+        android:id="@+id/post_title1"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,21 +17,21 @@
         tools:text="My First Post" />
 
     <TextView
-        android:id="@+id/post_name"
+        android:id="@+id/post_name1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Name" />
 
     <TextView
-        android:id="@+id/post_cgp"
+        android:id="@+id/post_cgp1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="CGPA" />
 
     <TextView
-        android:id="@+id/post_techni"
+        android:id="@+id/post_techni1"
         style="@style/Base.TextAppearance.AppCompat.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,15 @@
         tools:text="Technical" />
 
     <TextView
-        android:id="@+id/post_requestfor"
+        android:id="@+id/post_dep1"
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="Department" />
+
+    <TextView
+        android:id="@+id/post_requestfor1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

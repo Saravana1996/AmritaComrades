@@ -3,6 +3,14 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/Faculty"
+            android:title="Faculty"/>
+        <item
+            android:id="@+id/Inbox"
+            android:title="Inbox"/>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
             android:id="@+id/profile"
             android:icon="@drawable/profile01"
             android:title="Profile" />

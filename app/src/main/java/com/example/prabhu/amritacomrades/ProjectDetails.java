@@ -26,7 +26,7 @@ public class ProjectDetails extends AppCompatActivity {
     private DatabaseReference mPostReference, mPostReference1, mnewRef, mUserRef;
     private FirebaseUser firebaseUser;
     private ValueEventListener mPostListener;
-    private String num, value, uid1, email, cgpa, name, department, technical, key, uid;
+    private String num, value, uid1, email, cgpa, name, department, technical, key, uid, title;
     private TextView mdomainView;
     private TextView mTitleView;
     private TextView mBodyView;
@@ -51,7 +51,8 @@ public class ProjectDetails extends AppCompatActivity {
                 .child("All-Projects").child(mPostKey);
         uid = firebaseUser.getUid();
         //Make it asycn process at the end
-        new TestAsync().execute();
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
 
 
         mdomainView = (TextView) findViewById(R.id.post_domain);
@@ -77,46 +78,18 @@ public class ProjectDetails extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mnewRef.child("title").setValue(title);
+                mnewRef.child("name").setValue(name);
+                mnewRef.child("email").setValue(email);
+                mnewRef.child("cgpa").setValue(cgpa);
+                mnewRef.child("technical").setValue(technical);
+                mnewRef.child("department").setValue(department);
                 mnewRef.child("requesting").setValue(value);
                 Intent intent = new Intent(ProjectDetails.this, Pro.class);
                 startActivity(intent);
                 finish();
             }
         });
-    }
-    class TestAsync extends AsyncTask<Void, Integer, String>
-    {
-        String TAG = getClass().getSimpleName();
-
-        protected void onPreExecute (){
-            Log.d(TAG + " PreExecute","On pre Execute......");
-        }
-
-        protected String doInBackground(Void...arg0) {
-            mPostReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    Post post = dataSnapshot.getValue(Post.class);
-                    uid1 = post.uid;
-                    mnewRef = FirebaseDatabase.getInstance().getReference()
-                            .child("Request").child(uid1).child(uid);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-            return "You are at PostExecute";
-        }
-
-        protected void onProgressUpdate(Integer...a){
-            Log.d(TAG + " onProgressUpdate", "You are in progress update ... " + a[0]);
-        }
-
-        protected void onPostExecute(String result) {
-            Log.d(TAG + " onPostExecute", "" + result);
-        }
     }
     @Override
     public void onStart() {
@@ -130,8 +103,10 @@ public class ProjectDetails extends AppCompatActivity {
                 // Get Post object and use the values to update the UI
                 Post post = dataSnapshot.getValue(Post.class);
                 // [START_EXCLUDE]
-                Toast.makeText(ProjectDetails.this, post.title,
-                        Toast.LENGTH_SHORT).show();
+                uid1 = post.uid;
+                title = post.title;
+                mnewRef = FirebaseDatabase.getInstance().getReference()
+                        .child("Request").child(uid1);
                 mdomainView.setText(post.domain);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.about);
@@ -151,7 +126,25 @@ public class ProjectDetails extends AppCompatActivity {
             }
         };
 
+        ValueEventListener userListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                name = user.name;
+                cgpa = user.cgpa;
+                technical = user.technical;
+                department = user.department;
+                email = user.email;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
         mPostReference.addValueEventListener(postListener);
+        mUserRef.addValueEventListener(userListener);
         mPostReference1 = FirebaseDatabase.getInstance().getReference()
                 .child("All-Projects").child(mPostKey).child("requirements");
         mPostReference1.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -166,31 +159,26 @@ public class ProjectDetails extends AppCompatActivity {
                     if(i == 0 && nn != 0){
                         mrchoose1.setText(d.getKey());
                         i++;
-                        mPostReference1.child(d.getKey()).setValue(nn);
                     }
                     else if(i == 1 && nn != 0){
                         mrchoose2.setVisibility(View.VISIBLE);
                         mrchoose2.setText(d.getKey());
                         i++;
-                        mPostReference1.child(d.getKey()).setValue(nn);
                     }
                     else if(i == 2 && nn != 0){
                         mrchoose3.setVisibility(View.VISIBLE);
                         mrchoose3.setText(d.getKey());
                         i++;
-                        mPostReference1.child(d.getKey()).setValue(nn);
                     }
                     else if(i == 3 && nn != 0){
                         mrchoose4.setVisibility(View.VISIBLE);
                         mrchoose4.setText(d.getKey());
                         i++;
-                        mPostReference1.child(d.getKey()).setValue(nn);
                     }
                     else if(i == 4 && nn != 0){
                         mrchoose5.setVisibility(View.VISIBLE);
                         mrchoose5.setText(d.getKey());
                         i++;
-                        mPostReference1.child(d.getKey()).setValue(nn);
                     }
                 }
 
