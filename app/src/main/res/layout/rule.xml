@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="
+1) Before writing a paper, review some good papers published by well established and reputed authors.\n\n
+2) The title should clearly reflect motive of the research.\n\n
+3) Primer contributor should be the first author.\n\n
+4) The co-authors should be on the basis of amount of their contribution in the work.\n\n
+5) Carefully check your paper or work for \n\n
+6) Collect the references on which the work is based for the proper citation of the paper.\n\n
+7) Add figures which should be explanatory and convey clear distributions in the paper.\n\n
+8) While using the graphs grid should be light in color with clear variable distribution and scale.\n\n
+9) While writing the paper equation is the most important segment of the paper. Therefore while writing equations one should use proper symbols with local definition of the symbols.\n\n
+10) The derivations which are necessary should be induced briefly in the appendix.\n\n
+11) Organize all the points in detail and in proper sequence\n\n
+12) Abstract should completely focus on work.\n\n
+13) The introduction should denote the general importance of your work and the overview of preliminaries of the research.\n\n
+14) Next step defines the contribution of the past work with the reference of the past work on which your work is based.\n\n
+15) Finally the results and significance of the work will be discussed in conclusion.\n\n
+16) An acknowledgement should be included after conclusion if you have taken help from others to complete your work.\n\n
+17) After writing the full draft, iterate it several times for improvement and to give final touch for polishing of written English.
+ "
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

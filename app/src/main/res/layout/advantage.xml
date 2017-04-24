@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="
+1) Paper writing involves four basic steps i.e., the concept, research, development and final results.\n\n
+2) All research paper undoubtedly has more value sometime on your GPA.\n\n
+3) Having good papers in undergraduate level is an added advantage, be it masters, Ph.D or a job.\n\n
+4) It helps to impress interviewers.\n\n
+5) ‘A’ grade research paper is a feather in your cap and reflects well on your resume.\n\n
+6) The mean of publishing is to be recognized by the world."
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18dp" />
+</LinearLayout>

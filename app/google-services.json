@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "444001640560",
+    "firebase_url": "https://amritacomrades.firebaseio.com",
+    "project_id": "amritacomrades",
+    "storage_bucket": "amritacomrades.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444001640560:android:91c9ba9a3524aa4a",
+        "android_client_info": {
+          "package_name": "com.example.prabhu.amritacomrades"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444001640560-6p24fcetmbhic7qbtbmmgjg8i38rcdvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prabhu.amritacomrades",
+            "certificate_hash": "e380ae998891c347559ffdd18dcee35bc1e98a55"
+          }
+        },
+        {
+          "client_id": "444001640560-1s6tg6ba0t5i6iccda4bdqtsfqdu1n1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcXsAiQLArXFp_Al4AxMeSYdub_ktjVC8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444001640560-1s6tg6ba0t5i6iccda4bdqtsfqdu1n1r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

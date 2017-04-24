@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.prabhu.amritacomrades.New_project">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        app:title="  Amrita Comrades"
+        app:titleTextColor="@android:color/background_light"
+        android:id="@+id/toolbarnew" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarnew">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <EditText
+                android:id="@+id/field_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Title"
+                android:maxLines="1" />
+
+            <EditText
+                android:id="@+id/field_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_title"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="About your project..."
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:scrollHorizontally="false" />
+
+            <EditText
+                android:id="@+id/field_domain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_body"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Domain"
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:scrollHorizontally="false" />
+
+            <EditText
+                android:id="@+id/field_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_domain"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Department"
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:scrollHorizontally="false" />
+
+            <TextView
+                android:id="@+id/textreqnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_department"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:text="Required poject teammates           "
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="18dp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/textreqnum">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="3"
+                    android:layout_marginLeft="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="30dp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp" />
+
+            </RadioGroup>
+
+
+
+            <EditText
+                android:id="@+id/field_member"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radioGroup"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Requesting domain..."
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:scrollHorizontally="false"
+                android:layout_alignEnd="@+id/textreqnum" />
+
+            <Spinner
+                android:id="@+id/spinner4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/field_member"
+                android:layout_alignBottom="@+id/field_member"
+                android:layout_alignTop="@+id/field_member" />
+
+
+            <EditText
+                android:id="@+id/field_member1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_member"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Requesting domain..."
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:visibility="gone"
+                android:scrollHorizontally="false"
+                android:layout_alignEnd="@+id/textreqnum" />
+
+            <Spinner
+                android:id="@+id/spinner5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_toRightOf="@+id/field_member1"
+                android:layout_alignBottom="@+id/field_member1"
+                android:layout_alignTop="@+id/field_member1" />
+
+            <EditText
+                android:id="@+id/field_member2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_member1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Requesting domain..."
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:scrollHorizontally="false"
+                android:layout_alignEnd="@+id/textreqnum" />
+
+            <Spinner
+                android:id="@+id/spinner6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_toRightOf="@+id/field_member2"
+                android:layout_alignBottom="@+id/field_member2"
+                android:layout_alignTop="@+id/field_member2" />
+
+            <EditText
+                android:id="@+id/field_member3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_member2"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Requesting domain..."
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:scrollHorizontally="false"
+                android:layout_alignEnd="@+id/textreqnum" />
+
+            <Spinner
+                android:id="@+id/spinner7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/field_member3"
+                android:visibility="gone"
+                android:layout_alignBottom="@+id/field_member3"
+                android:layout_alignTop="@+id/field_member3" />
+
+            <EditText
+                android:id="@+id/field_member4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/field_member3"
+                android:visibility="gone"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:hint="Requesting domain..."
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:scrollHorizontally="false"
+                android:layout_alignEnd="@+id/textreqnum" />
+
+            <Spinner
+                android:id="@+id/spinner8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_toRightOf="@+id/field_member4"
+                android:layout_alignBottom="@+id/field_member4"
+                android:layout_alignTop="@+id/field_member4" />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_submit_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_navigation_check_24"/>
+
+
+
+</RelativeLayout>
