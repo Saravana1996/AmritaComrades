@@ -1,6 +1,10 @@
 package com.example.prabhu.amritacomrades;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by PRABHU on 23-04-2017.
@@ -16,7 +20,7 @@ public class In {
     public String technical;
     public String title;
 
-    //public Map<String, Boolean> stars = new HashMap<>();
+    public Map<String, Boolean> stars = new HashMap<>();
     public In() {
 
     }
@@ -30,4 +34,19 @@ public class In {
         this.department = department;
         this.requesting = requesting;
     }
+
+//    @Exclude
+//    public Map<String, Object> toMap() {
+//        HashMap<String, Object> result = new HashMap<>();
+//        result.put("title", title);
+//        result.put("name", name);
+//        result.put("email", email);
+//        result.put("cgpa", cgpa);
+//        result.put("technical", technical);
+//        result.put("department", department);
+//        result.put("requesting", requesting);
+//
+//
+//        return result;
+//    }
 }

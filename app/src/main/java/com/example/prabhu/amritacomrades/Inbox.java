@@ -27,10 +27,10 @@ public class Inbox extends AppCompatActivity {
 
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
-                    new Inbox_Request(),
+                    new Inbox_Request()
             };
             private final String[] mFragmentNames = new String[] {
-                    "Inbox",
+                    "Inbox"
             };
             @Override
             public Fragment getItem(int position) {

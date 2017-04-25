@@ -17,32 +17,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="15dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Inbox_text"
-            android:weightSum="1">
-
-            <Button
-                android:id="@+id/buttonac"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.50"
-                android:textColor="#ffffff"
-                android:background="@color/colorAccent"
-                android:text="Accept" />
-
-            <Button
-                android:id="@+id/buttonde"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.50"
-                android:text="Decline" />
 
 
-        </LinearLayout>
+
 
 
 

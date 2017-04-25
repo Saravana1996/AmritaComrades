@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.prabhu.amritacomrades.Holder.InboxViewHolder;
 import com.example.prabhu.amritacomrades.Holder.ProjectViewHolder;
 import com.example.prabhu.amritacomrades.In;
+import com.example.prabhu.amritacomrades.Inbox;
 import com.example.prabhu.amritacomrades.Post;
 import com.example.prabhu.amritacomrades.ProjectDetails;
 import com.example.prabhu.amritacomrades.R;
@@ -57,7 +60,7 @@ public abstract class ProjectFragment extends Fragment {
         return rootView;
     }
 
-    public abstract Query getQuery(DatabaseReference databaseReference);
+
 
 
     @Override
@@ -80,22 +83,41 @@ public abstract class ProjectFragment extends Fragment {
 
                 // Set click listener for the whole post view
                 final String postKey = postRef.getKey();
-//                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        // Launch PostDetailActivity
-//                        Intent intent = new Intent(getActivity(), ProjectDetails.class);
-//                        intent.putExtra(ProjectDetails.EXTRA_POST_KEY, postKey);
-//                        startActivity(intent);
-//                    }
-//                });
-                viewHolder.bindToPost(model);
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Launch PostDetailActivity
+                    }
+                });
+                Log.e("E_VALUE", model.department);
+                try{
+                    viewHolder.titleView.setText(model.title);
+                    viewHolder.nameView.setText(model.name);
+                    viewHolder.cgpaView.setText(model.cgpa);
+                    viewHolder.technicalView.setText(model.technical);
+                    viewHolder.departmentView.setText(model.department);
+                    viewHolder.requestingView.setText("Requesting for - "+model.requesting);
+                }
+                catch (Exception e){
+
+                }
+
             }
         };
         mRecycler.setAdapter(mAdapter);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mAdapter != null) {
+            mAdapter.cleanup();
+        }
+    }
+
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
+
+    public abstract Query getQuery(DatabaseReference databaseReference);
 }

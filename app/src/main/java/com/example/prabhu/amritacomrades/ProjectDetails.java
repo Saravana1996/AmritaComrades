@@ -26,7 +26,7 @@ public class ProjectDetails extends AppCompatActivity {
     private DatabaseReference mPostReference, mPostReference1, mnewRef, mUserRef;
     private FirebaseUser firebaseUser;
     private ValueEventListener mPostListener;
-    private String num, value, uid1, email, cgpa, name, department, technical, key, uid, title;
+    private String num, value, uid1, email, cgpa, name, department, technical, key, uid, title,keyvalue;
     private TextView mdomainView;
     private TextView mTitleView;
     private TextView mBodyView;
@@ -78,13 +78,14 @@ public class ProjectDetails extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mnewRef.child("title").setValue(title);
-                mnewRef.child("name").setValue(name);
-                mnewRef.child("email").setValue(email);
-                mnewRef.child("cgpa").setValue(cgpa);
-                mnewRef.child("technical").setValue(technical);
-                mnewRef.child("department").setValue(department);
-                mnewRef.child("requesting").setValue(value);
+                DatabaseReference databaseReference = mnewRef.child(keyvalue);
+                databaseReference.child("title").setValue(title);
+                databaseReference.child("name").setValue(name);
+                databaseReference.child("email").setValue(email);
+                databaseReference.child("cgpa").setValue(cgpa);
+                databaseReference.child("technical").setValue(technical);
+                databaseReference.child("department").setValue(department);
+                databaseReference.child("requesting").setValue(value);
                 Intent intent = new Intent(ProjectDetails.this, Pro.class);
                 startActivity(intent);
                 finish();
@@ -107,6 +108,8 @@ public class ProjectDetails extends AppCompatActivity {
                 title = post.title;
                 mnewRef = FirebaseDatabase.getInstance().getReference()
                         .child("Request").child(uid1);
+                keyvalue = mnewRef.push().getKey();
+
                 mdomainView.setText(post.domain);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.about);
@@ -126,25 +129,27 @@ public class ProjectDetails extends AppCompatActivity {
             }
         };
 
-        ValueEventListener userListener = new ValueEventListener() {
+        mUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                name = user.name;
-                cgpa = user.cgpa;
-                technical = user.technical;
-                department = user.department;
-                email = user.email;
+
+                name = dataSnapshot.child("Name").getValue().toString();
+                email = dataSnapshot.child("Email").getValue().toString();
+                department = dataSnapshot.child("Department").getValue().toString();
+                cgpa = dataSnapshot.child("CGPA").getValue().toString();
+                technical = dataSnapshot.child("Technical").getValue().toString();
+
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        };
+        });
+
 
         mPostReference.addValueEventListener(postListener);
-        mUserRef.addValueEventListener(userListener);
         mPostReference1 = FirebaseDatabase.getInstance().getReference()
                 .child("All-Projects").child(mPostKey).child("requirements");
         mPostReference1.addListenerForSingleValueEvent(new ValueEventListener() {

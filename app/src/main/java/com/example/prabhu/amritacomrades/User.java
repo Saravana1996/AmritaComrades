@@ -1,5 +1,6 @@
 package com.example.prabhu.amritacomrades;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
@@ -21,13 +22,13 @@ public class User {
 
     }
 
-    public User(String Name, String email, String cgpa, String department, String semester, String technical, String Uid) {
-        this.name = Name;
+    public User(String name, String email, String cgpa, String department, String semester, String technical, String uid) {
+        this.name = name;
         this.semester= semester;
         this.cgpa = cgpa;
         this.department = department;
         this.email = email;
-        this.uid = Uid;
+        this.uid = uid;
         this.technical = technical;
     }
 }
