@@ -31,6 +31,7 @@
         android:layout_below="@+id/post_te"
         android:layout_marginTop="10dp"
         android:text="Domains :"
+        android:visibility="visible"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
     <RadioGroup
@@ -39,6 +40,7 @@
         android:id="@+id/radioGroup1"
         android:layout_below="@+id/textdo"
         android:layout_marginLeft="30dp"
+        android:visibility="visible"
         android:layout_alignStart="@+id/post_te">
 
         <RadioButton
@@ -80,13 +82,14 @@
     </RadioGroup>
 
     <Button
+        android:id="@+id/buttonaccept"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonaccept"
-        android:text="Request"
         android:layout_below="@+id/radioGroup1"
         android:layout_centerHorizontal="true"
-        android:visibility="gone"/>
+        android:text="Request"
+        android:visibility="visible" />
 
 
 </RelativeLayout>
