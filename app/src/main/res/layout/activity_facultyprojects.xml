@@ -10,21 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/colorPrimary"
-        app:title="Faculty"
+        app:title="  Amrita Comrades"
         app:titleTextColor="@android:color/background_light"
-        android:id="@+id/toolbarfaculty" />
+        android:id="@+id/toolbarfacultyprojects" />
     <android.support.v7.widget.AppCompatSpinner
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbarfaculty"
-        android:layout_above="@+id/wview"
-        android:layout_alignParentStart="true">
+        android:id="@+id/fspinner"
+        android:layout_below="@+id/toolbarfacultyprojects"
+        android:layout_height="30dp"></android.support.v7.widget.AppCompatSpinner>
 
-    </android.support.v7.widget.AppCompatSpinner>
     <WebView
         android:id="@+id/wview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbarfaculty"
-        app:layout_constraintHorizontal_bias="0.461" />
+        android:layout_below="@+id/fspinner"/>
 </RelativeLayout>

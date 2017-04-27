@@ -31,6 +31,9 @@ public class InboxViewHolder extends RecyclerView.ViewHolder {
         nameView = (TextView) itemView.findViewById(R.id.post_name1);
         departmentView = (TextView) itemView.findViewById(R.id.post_dep1);
         requestingView = (TextView) itemView.findViewById(R.id.post_requestfor1);
+        acceptbutton = (Button) itemView.findViewById(R.id.buttonac1);
+        declinebutton = (Button) itemView.findViewById(R.id.buttondec1);
+
     }
 
     public void bindtoPost(In in) {

@@ -1,10 +1,13 @@
 package com.example.prabhu.amritacomrades;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prabhu.amritacomrades.Learn.Aboutus;
@@ -28,17 +33,58 @@ public class Homepage extends ProgressActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private EditText em, pass;
     private Button bn;
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth, firebaseAuth2;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
     private String rno = "",pwd = "";
+    private String ema;
+    private AlertDialog.Builder builder;
+    private TextView textView;
     private ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        builder = new AlertDialog.Builder(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        user = firebaseAuth.getInstance().getCurrentUser();
+        textView = (TextView)findViewById(R.id.textView3);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.setTitle("Enter your Email-id");
+                final EditText input = new EditText(Homepage.this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+                builder.setView(input);
+                builder.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ema = input.getText().toString();
+                        firebaseAuth2.sendPasswordResetEmail(ema).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Check your mail to reset the password", Toast.LENGTH_SHORT);
+                                }
+                            }
+                        });
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
         dialog = new ProgressDialog(this);
         bn=(Button)findViewById(R.id.button);
         em=(EditText)findViewById(R.id.editText);
@@ -47,9 +93,8 @@ public class Homepage extends ProgressActivity
         authStateListener = new FirebaseAuth.AuthStateListener(){
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
-                user = firebaseAuth.getInstance().getCurrentUser();
-                if(user != null && user.isEmailVerified()){
 
+                if(user != null && user.isEmailVerified()){
                     Intent intent2=new Intent(Homepage.this,selectDep.class);
                     startActivity(intent2);
                     finish();
@@ -110,7 +155,7 @@ public class Homepage extends ProgressActivity
             Toast.makeText(Homepage.this, "Fields are empty", Toast.LENGTH_SHORT).show();
         }
         else {
-            dialog.setMessage("Loading... Please Wait...");
+            dialog.setMessage("Logging in...");
             dialog.show();
             firebaseAuth.signInWithEmailAndPassword(rno, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -119,15 +164,17 @@ public class Homepage extends ProgressActivity
                         dialog.dismiss();
                         Toast.makeText(Homepage.this, "Invalid e-mail or password", Toast.LENGTH_SHORT).show();
                     }
+                    else if(!user.isEmailVerified()){
+                        dialog.dismiss();
+                        Toast.makeText(Homepage.this, "Verify your email id", Toast.LENGTH_SHORT).show();
+                    }
                     else{
-                        if (!user.isEmailVerified()){
-                            dialog.dismiss();
-                            Toast.makeText(Homepage.this, "Verify your email id", Toast.LENGTH_SHORT).show();
-                        }
+                        startActivity(new Intent(Homepage.this, Homepage.class));
+                        dialog.dismiss();
                     }
                 }
             });
-            hideProgressDialog();
+
         }
     }
 
@@ -159,8 +206,6 @@ public class Homepage extends ProgressActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/colorPrimary"
-        app:title="  Amrita Comrades"
+        app:title="Amrita Comrades"
         app:titleTextColor="@android:color/background_light"
         android:id="@+id/projecttoolbar"
         />
@@ -75,12 +75,11 @@
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignStart="@+id/textView22"
-                android:layout_below="@+id/textView22"
-                android:layout_marginTop="3dp"
+                android:text=""
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_below="@+id/textView22"
+                android:layout_alignStart="@+id/textView22" />
 
 
 
@@ -183,6 +182,7 @@
                 android:layout_below="@+id/textView33"
                 android:layout_marginTop="30dp"
                 android:layout_alignStart="@+id/textView20"
+
                 android:text="Technical Specification:"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="18sp"
@@ -209,6 +209,34 @@
                 android:backgroundTint="@color/colorAccent"
                 android:text="Done" />
 
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_above="@+id/textView32"
+                android:layout_marginEnd="18dp"
+                android:layout_alignParentEnd="true"
+                android:text="Update" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:layout_above="@+id/textView34"
+                android:layout_alignStart="@+id/button8" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:layout_alignTop="@+id/textView34"
+                android:layout_alignStart="@+id/button9" />
 
 
         </RelativeLayout>

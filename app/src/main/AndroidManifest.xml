@@ -37,10 +37,10 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Profile" />
         <activity android:name=".Learn.learn" />
-        <activity android:name=".Pro" />
         <activity android:name=".ProjectDetails" />
         <activity android:name=".New_project" />
-        <activity android:name=".Inbox"></activity>
+        <activity android:name=".Inbox" />
+        <activity android:name=".facultyprojects"></activity>
     </application>
 
 </manifest>

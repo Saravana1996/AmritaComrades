@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class New_project extends ProgressActivity {
     private EditText editrequest1, editrequest2, editrequest3, editrequest4, editrequest5, edittitle, editabout, editdomain, editdepartment;
     private Spinner spinrequest1, spinrequest2, spinrequest3, spinrequest4, spinrequest5;
     private RadioGroup radioGroup;
-    private String req1, req2, req3, req4, req5;
+    private String req1, req2, req3, req4, req5, title, about, domain, department, email, uid, key;
     private int[] no = new int[5];
     private DatabaseReference databaseReference;
     private ArrayAdapter<CharSequence> numadapter1,numadapter2, numadapter3, numadapter4, numadapter5;
@@ -257,63 +258,91 @@ public class New_project extends ProgressActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createprojectProgress();
-                String title = edittitle.getText().toString();
-                String about = editabout.getText().toString();
-                String domain = editdomain.getText().toString();
-                String department = editdepartment.getText().toString();
-                String req1, req2, req3, req4, req5;
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = user.getUid();
-                String email = user.getEmail();
-                String key = databaseReference.child("Projects").push().getKey();
-                Toast.makeText(New_project.this, key, Toast.LENGTH_SHORT).show();
-                DatabaseReference databaseReference2 = databaseReference.child("Projects").child(uid).child(key);
-                DatabaseReference databaseReference3 = databaseReference.child("All-Projects").child(key);
-                databaseReference2.child("title").setValue(title);
-                databaseReference3.child("title").setValue(title);
-                databaseReference2.child("uid").setValue(uid);
-                databaseReference3.child("uid").setValue(uid);
-                databaseReference2.child("email").setValue(email);
-                databaseReference3.child("email").setValue(email);
-                databaseReference2.child("about").setValue(about);
-                databaseReference3.child("about").setValue(about);
-                databaseReference2.child("domain").setValue(domain);
-                databaseReference3.child("domain").setValue(domain);
-                databaseReference2.child("department").setValue(department);
-                databaseReference3.child("department").setValue(department);
-                databaseReference2.child("members").setValue(number);
-                databaseReference3.child("members").setValue(number);
-                DatabaseReference databaseReference1 = databaseReference2.child("requirements");
-                DatabaseReference databaseReference4 = databaseReference3.child("requirements");
-                if(flagre1){
-                    req1 = editrequest1.getText().toString();
-                    databaseReference1.child(req1).setValue(no[0]);
-                    databaseReference4.child(req1).setValue(no[0]);
+
+                if (TextUtils.isEmpty(edittitle.getText().toString())) {
+                    edittitle.setError("Required");
+                } else {
+                    edittitle.setError(null);
+                    title = edittitle.getText().toString();
                 }
-                if(flagre2){
-                    req2 = editrequest2.getText().toString();
-                    databaseReference1.child(req2).setValue(no[1]);
-                    databaseReference4.child(req2).setValue(no[1]);
+
+                if (TextUtils.isEmpty(editabout.getText().toString())) {
+                    editabout.setError("Required");
+                } else {
+                    editabout.setError(null);
+                    about = editabout.getText().toString();
                 }
-                if(flagre3){
-                    req3 = editrequest3.getText().toString();
-                    databaseReference1.child(req3).setValue(no[2]);
-                    databaseReference4.child(req3).setValue(no[2]);
+                if (TextUtils.isEmpty(editdomain.getText().toString())) {
+                    editdomain.setError("Required");
+                } else {
+                    editdomain.setError(null);
+                    domain = editdomain.getText().toString();
                 }
-                if(flagre4){
-                    req4 = editrequest4.getText().toString();
-                    databaseReference1.child(req4).setValue(no[3]);
-                    databaseReference4.child(req4).setValue(no[3]);
+                if (TextUtils.isEmpty(editdepartment.getText().toString())) {
+                    editdepartment.setError("Required");
+                } else {
+                    editdepartment.setError(null);
+                    department = editdepartment.getText().toString();
                 }
-                if(flagre5){
-                    req5 = editrequest5.getText().toString();
-                    databaseReference1.child(req5).setValue(no[4]);
-                    databaseReference4.child(req5).setValue(no[4]);
+                if(TextUtils.isEmpty(title) || TextUtils.isEmpty(about) || TextUtils.isEmpty(domain) || TextUtils.isEmpty(department)){
+                    Toast.makeText(New_project.this, "Enter all fields.", Toast.LENGTH_SHORT).show();
                 }
-                hideProgressDialog();
-                Intent intent = new Intent(New_project.this, Pro.class);
-                startActivity(intent);
+                else{
+                    createprojectProgress();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = user.getUid();
+                    String email = user.getEmail();
+                    String key = databaseReference.child("Projects").push().getKey();
+                    DatabaseReference databaseReference2 = databaseReference.child("Projects").child(uid).child(key);
+                    DatabaseReference databaseReference3 = databaseReference.child("All-Projects").child(key);
+                    databaseReference2.child("title").setValue(title);
+                    databaseReference3.child("title").setValue(title);
+                    databaseReference2.child("uid").setValue(uid);
+                    databaseReference3.child("uid").setValue(uid);
+                    databaseReference2.child("email").setValue(email);
+                    databaseReference3.child("email").setValue(email);
+                    databaseReference2.child("about").setValue(about);
+                    databaseReference3.child("about").setValue(about);
+                    databaseReference2.child("domain").setValue(domain);
+                    databaseReference3.child("domain").setValue(domain);
+                    databaseReference2.child("department").setValue(department);
+                    databaseReference3.child("department").setValue(department);
+                    databaseReference2.child("members").setValue(number);
+                    databaseReference3.child("members").setValue(number);
+                    DatabaseReference databaseReference1 = databaseReference2.child("requirements");
+                    DatabaseReference databaseReference4 = databaseReference3.child("requirements");
+                    if(flagre1){
+                        req1 = editrequest1.getText().toString();
+                        databaseReference1.child(req1).setValue(no[0]);
+                        databaseReference4.child(req1).setValue(no[0]);
+                    }
+                    if(flagre2){
+                        req2 = editrequest2.getText().toString();
+                        databaseReference1.child(req2).setValue(no[1]);
+                        databaseReference4.child(req2).setValue(no[1]);
+                    }
+                    if(flagre3){
+                        req3 = editrequest3.getText().toString();
+                        databaseReference1.child(req3).setValue(no[2]);
+                        databaseReference4.child(req3).setValue(no[2]);
+                    }
+                    if(flagre4){
+                        req4 = editrequest4.getText().toString();
+                        databaseReference1.child(req4).setValue(no[3]);
+                        databaseReference4.child(req4).setValue(no[3]);
+                    }
+                    if(flagre5){
+                        req5 = editrequest5.getText().toString();
+                        databaseReference1.child(req5).setValue(no[4]);
+                        databaseReference4.child(req5).setValue(no[4]);
+                    }
+                    hideProgressDialog();
+                    Intent intent = new Intent(New_project.this, selectDep.class);
+                    startActivity(intent);
+                }
+
+
+
 
 
 

@@ -4,10 +4,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/Faculty"
+            android:icon="@drawable/facultyicon01"
             android:title="Faculty"/>
         <item
             android:id="@+id/Inbox"
-            android:title="Inbox"/>
+            android:title="Inbox"
+            android:icon="@drawable/inbox01"/>
     </group>
     <group android:checkableBehavior="single">
         <item
@@ -30,10 +32,7 @@
                 android:id="@+id/nav_share1"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
-            <item
-                android:id="@+id/nav_send1"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+
         </menu>
     </item>
 

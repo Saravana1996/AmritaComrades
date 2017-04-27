@@ -1,10 +1,15 @@
 package com.example.prabhu.amritacomrades;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,39 +26,28 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.prabhu.amritacomrades.Fragments.All_Projects;
+import com.example.prabhu.amritacomrades.Fragments.My_Projects;
 import com.example.prabhu.amritacomrades.Learn.Aboutus;
 import com.example.prabhu.amritacomrades.Learn.learn;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class selectDep extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener  {
     private FirebaseAuth firebaseAuth;
     private AlertDialog.Builder builder;
+    private FragmentPagerAdapter mPagerAdapter;
+    private ViewPager mViewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_dep);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        Toolbar tb=(Toolbar)findViewById(R.id.toolbar3);
-        setSupportActionBar(tb);
 
         builder = new AlertDialog.Builder(this);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.Departments, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -63,52 +57,43 @@ public class selectDep extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        Button button = (Button)findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        //Content of the fragment starts here
+
+        mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+            private final Fragment[] mFragments = new Fragment[] {
+                    new All_Projects(),
+                    new My_Projects(),
+            };
+            private final String[] mFragmentNames = new String[] {
+                    "Recent",
+                    "My Project"
+            };
+            @Override
+            public Fragment getItem(int position) {
+                return mFragments[position];
+            }
+            @Override
+            public int getCount() {
+                return mFragments.length;
+            }
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mFragmentNames[position];
+            }
+        };
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
+        findViewById(R.id.fabpro).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    RadioButton r1=(RadioButton)findViewById(R.id.radioButton3);
-                    RadioButton r2=(RadioButton)findViewById(R.id.radioButton4);
-                    if(r1.isChecked()){
-                        callfaculty();
-                    }
-                    else if(r2.isChecked()){
-                        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-                        String s=spinner.getSelectedItem().toString();
-                        if(s.equalsIgnoreCase("select a department")){
-                            Toast.makeText(getApplication(),"Please select Department again",Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Intent intent=new Intent(selectDep.this,Pro.class);
-                            intent.putExtra("val",s);
-                            startActivity(intent);
-                        }
-
-                    }
-                    else{
-                        Toast.makeText(getApplication(),"Please select Search for again",Toast.LENGTH_SHORT).show();
-                    }
-
+                startActivity(new Intent(selectDep.this, New_project.class));
             }
         });
-    }
-
-    public void callfaculty(){
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        String s=spinner.getSelectedItem().toString();
-
-        if(s.equalsIgnoreCase("select a department")){
-            Toast.makeText(getApplication(),"Please select Department again",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Intent intent3=new Intent(selectDep.this,Faculty.class);
-            intent3.putExtra("dept",s);
-            startActivity(intent3);
-        }
-    }
-
-    public void callprojects(){
 
     }
 
@@ -144,8 +129,11 @@ public class selectDep extends AppCompatActivity
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+//                    ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+//                    progressDialog.setMessage("Logging out...");
+//                    progressDialog.show();
                     firebaseAuth.getInstance().signOut();
-                    Toast.makeText(getApplication(),"Logout Successful",Toast.LENGTH_SHORT).show();
+//                    progressDialog.dismiss();
                     Intent intent = new Intent(selectDep.this, Homepage.class);
                     startActivity(intent);
                     finish();
@@ -184,9 +172,9 @@ public class selectDep extends AppCompatActivity
 
         } else if (id == R.id.nav_share1) {
 
-        } else if (id == R.id.nav_send1) {
-
         } else if (id == R.id.Faculty) {
+            Intent intent=new Intent(selectDep.this,facultyprojects.class);
+            startActivity(intent);
 
         } else if (id == R.id.Inbox){
             Intent intent = new Intent(selectDep.this, Inbox.class);

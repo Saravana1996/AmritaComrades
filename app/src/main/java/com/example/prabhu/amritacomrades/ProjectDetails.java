@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -46,7 +47,6 @@ public class ProjectDetails extends AppCompatActivity {
             throw new IllegalArgumentException("Must pass EXTRA_POST_KEY");
         }
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        Toast.makeText(getApplicationContext(), key, Toast.LENGTH_SHORT).show();
         mPostReference = FirebaseDatabase.getInstance().getReference()
                 .child("All-Projects").child(mPostKey);
         uid = firebaseUser.getUid();
@@ -86,7 +86,7 @@ public class ProjectDetails extends AppCompatActivity {
                 databaseReference.child("technical").setValue(technical);
                 databaseReference.child("department").setValue(department);
                 databaseReference.child("requesting").setValue(value);
-                Intent intent = new Intent(ProjectDetails.this, Pro.class);
+                Intent intent = new Intent(ProjectDetails.this, selectDep.class);
                 startActivity(intent);
                 finish();
             }
@@ -109,7 +109,6 @@ public class ProjectDetails extends AppCompatActivity {
                 mnewRef = FirebaseDatabase.getInstance().getReference()
                         .child("Request").child(uid1);
                 keyvalue = mnewRef.push().getKey();
-
                 mdomainView.setText(post.domain);
                 mTitleView.setText(post.title);
                 mBodyView.setText(post.about);
@@ -138,6 +137,8 @@ public class ProjectDetails extends AppCompatActivity {
                 department = dataSnapshot.child("Department").getValue().toString();
                 cgpa = dataSnapshot.child("CGPA").getValue().toString();
                 technical = dataSnapshot.child("Technical").getValue().toString();
+                Log.e("E_VALUE", technical);
+                Log.e("E_VALUE", department);
 
             }
 

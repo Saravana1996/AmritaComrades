@@ -23,41 +23,59 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/toolbarsel"/>
 
+    <TextView
+        android:id="@+id/textdo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/post_te"
+        android:layout_below="@+id/post_te"
+        android:layout_marginTop="10dp"
+        android:text="Domains :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/radioGroup1"
-        android:layout_below="@+id/post_te">
+        android:layout_below="@+id/textdo"
+        android:layout_marginLeft="30dp"
+        android:layout_alignStart="@+id/post_te">
+
+        <RadioButton
+            android:id="@+id/rshow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="domain"
+            android:textColor="@color/cardview_dark_background" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rshow1"
-            android:text="domain" />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/rshow2"
+            android:visibility="gone"
             android:text="domain"
-            android:visibility="gone"/>
+            android:textColor="@color/cardview_dark_background"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rshow3"
+            android:visibility="gone"
             android:text="domain"
-            android:visibility="gone"/>
+            android:textColor="@color/cardview_dark_background"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rshow4"
+            android:visibility="gone"
             android:text="domain"
-            android:visibility="gone"/>
+            android:textColor="@color/cardview_dark_background"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rshow5"
             android:text="domain"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/cardview_dark_background"/>
 
     </RadioGroup>
 
@@ -65,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonaccept"
-        android:text="Apply"
+        android:text="Request"
         android:layout_below="@+id/radioGroup1"
         android:layout_centerHorizontal="true"
         android:visibility="gone"/>
