@@ -125,15 +125,14 @@ public class selectDep extends AppCompatActivity
         if (id == R.id.logout2) {
             builder.setTitle("Logout");
             builder.setMessage("Are you sure you want to Logout?");
-
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-//                    ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
-//                    progressDialog.setMessage("Logging out...");
-//                    progressDialog.show();
+                    ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+                    progressDialog.setMessage("Logging out...");
+                    progressDialog.show();
                     firebaseAuth.getInstance().signOut();
-//                    progressDialog.dismiss();
+                    progressDialog.dismiss();
                     Intent intent = new Intent(selectDep.this, Homepage.class);
                     startActivity(intent);
                     finish();
@@ -150,7 +149,7 @@ public class selectDep extends AppCompatActivity
             alertDialog.show();
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
